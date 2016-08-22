@@ -27,12 +27,14 @@ export default class Calendar extends Component {
     dayHeadings: PropTypes.array,
     eventDates: PropTypes.array,
     monthNames: PropTypes.array,
+    nextButton: PropTypes.element,
     nextButtonText: PropTypes.string,
     onDateSelect: PropTypes.func,
     onSwipeNext: PropTypes.func,
     onSwipePrev: PropTypes.func,
     onTouchNext: PropTypes.func,
     onTouchPrev: PropTypes.func,
+    prevButton:PropTypes.element,
     prevButtonText: PropTypes.string,
     scrollEnabled: PropTypes.bool,
     selectedDate: PropTypes.any,
@@ -227,9 +229,13 @@ export default class Calendar extends Component {
             style={[styles.controlButton, this.props.customStyle.controlButton]}
             onPress={this.onPrev}
           >
-            <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
-              {this.props.prevButtonText}
-            </Text>
+            (
+              this.props.prevButton
+              ? {this.props.prevButton}
+              : <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
+                {this.props.prevButtonText}
+              </Text>
+            )
           </TouchableOpacity>
           <Text style={[styles.title, this.props.customStyle.title]}>
             {localizedMonth} {this.state.currentMonthMoment.year()}
@@ -238,9 +244,13 @@ export default class Calendar extends Component {
             style={[styles.controlButton, this.props.customStyle.controlButton]}
             onPress={this.onNext}
           >
-            <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
-              {this.props.nextButtonText}
-            </Text>
+            (
+              this.props.nextButton
+              ? {this.props.nextButton}
+              : <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
+                {this.props.nextButtonText}
+              </Text>
+            )
           </TouchableOpacity>
         </View>
       )
