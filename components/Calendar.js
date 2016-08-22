@@ -43,6 +43,7 @@ export default class Calendar extends Component {
     titleFormat: PropTypes.string,
     today: PropTypes.any,
     weekStart: PropTypes.number,
+    rightActions: PropTypes.arrayOf(PropTypes.element)
   };
 
   static defaultProps = {
@@ -235,6 +236,10 @@ export default class Calendar extends Component {
        {this.props.nextButtonText}
      </Text>
 
+     let rightActions = this.props.rightActions
+      ? this.props.rightActions
+      : null
+
     return this.props.showControls
     ? (
         <View style={[styles.calendarControls, this.props.customStyle.calendarControls]}>
@@ -250,6 +255,7 @@ export default class Calendar extends Component {
             onPress={this.onNext}
           >{next}
           </TouchableOpacity>
+          {rightActions}
         </View>
       )
     : (
